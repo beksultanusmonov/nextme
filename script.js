@@ -491,17 +491,26 @@ function renderMentor() {
     const user = getCurrentUser();
     if (!user) return;
     const chatContainer = document.getElementById('chat-container');
+    const matchedGoalData = goalDataMap[user.goal] || goalDataMap["Boshqa"];
     
     if (chatContainer.children.length === 0) {
-        const matchedGoalData = goalDataMap[user.goal] || goalDataMap["Boshqa"];
         chatContainer.innerHTML = `
             <div class="chat-message ai-message">
                 <div class="msg-avatar"><i class="fa-solid fa-robot"></i></div>
                 <div class="msg-bubble">
-                    Salom, <b>${user.name || user.username}</b>! ${matchedGoalData.mentorResponse}
+                    Salom, <b id="mentor-greeting-name">${user.name || user.username}</b>! <span id="mentor-greeting-response">${matchedGoalData.mentorResponse}</span>
                 </div>
             </div>
         `;
+    } else {
+        const greetingNameEl = document.getElementById('mentor-greeting-name');
+        if (greetingNameEl) {
+            greetingNameEl.textContent = user.name || user.username;
+        }
+        const greetingRespEl = document.getElementById('mentor-greeting-response');
+        if (greetingRespEl) {
+            greetingRespEl.textContent = matchedGoalData.mentorResponse;
+        }
     }
 }
 
