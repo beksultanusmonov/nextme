@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextMe - Yaxshiroq ko'nikmalar, Yaxshiroq hayot</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="app-container">
+    
+    <!-- ==================== ONBOARDING SCREEN ==================== -->
+    <div id="screen-onboarding" class="screen active">
+        <div class="header-top">
+            <div class="logo">
+                <div class="logo-icon">N</div>
+                <span class="logo-text">NextMe</span>
+            </div>
+            <div class="badge-ai"><i class="fa-solid fa-sparkles"></i> AI MENTOR</div>
+        </div>
+        
+        <div class="illustration-container">
+            <div class="robot-placeholder">
+                <i class="fa-solid fa-robot"></i>
+                <div class="sparkle"><i class="fa-solid fa-sparkles"></i></div>
+            </div>
+        </div>
+
+        <div class="onboarding-text">
+            <h1>NextMe: Yaxshiroq ko'nikmalar, Yaxshiroq hayot</h1>
+            <p>Bugungi men <i class="fa-solid fa-arrow-right"></i> Kelajakdagi men</p>
+            
+            <div class="tags">
+                <span class="tag"><span class="dot p-purple"></span> Orzu</span>
+                <span class="tag"><span class="dot p-blue"></span> Rivojlanish</span>
+                <span class="tag"><span class="dot p-pink"></span> Erishish</span>
+            </div>
+        </div>
+
+        <div class="bottom-action">
+            <button class="btn-primary" onclick="navigate('registration')">Boshlash <i class="fa-solid fa-arrow-right"></i></button>
+            <p class="subtitle">Kichik qadamlar. Haqiqiy o'zgarish. O'z tezligingizda.</p>
+        </div>
+    </div>
+
+    <!-- ==================== REGISTRATION SCREEN ==================== -->
+    <div id="screen-registration" class="screen">
+        <div class="header-top">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="btn-icon" onclick="navigate('onboarding')"><i class="fa-solid fa-arrow-left"></i></button>
+                <div class="logo">
+                    <div class="logo-icon">N</div>
+                    <span class="logo-text">NextMe</span>
+                </div>
+            </div>
+            <div class="badge-green"><i class="fa-solid fa-shield-check"></i> MAXFIY</div>
+        </div>
+
+        <div class="form-header">
+            <div class="chapter-badge"><span class="dot p-blue"></span> KEYINGI SAHIFA</div>
+            <h1>Akkaunt yarating</h1>
+            <p>Siz xohlagan insonga aylanish uchun shaxsiy rivojlanish rejasi.</p>
+        </div>
+
+        <form id="reg-form" class="auth-form" onsubmit="handleRegistration(event)">
+            <div class="form-group">
+                <label>Username</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-at"></i>
+                    <input type="text" id="reg-username" placeholder="@username" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Email</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-envelope"></i>
+                    <input type="email" id="reg-email" placeholder="siz@misol.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Parol</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="reg-password" placeholder="Kamida 8 ta belgi" required minlength="8">
+                    <i class="fa-regular fa-eye toggle-password"></i>
+                </div>
+            </div>
+
+            <p id="reg-error" class="error-text"></p>
+
+            <button type="submit" class="btn-primary">Akkaunt yaratish <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+
+        <div class="divider">
+            <span>YOKI BULAR ORQALI</span>
+        </div>
+
+        <div class="social-logins">
+            <button class="btn-social"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google"> Google</button>
+            <button class="btn-social"><i class="fa-brands fa-apple"></i> Apple</button>
+        </div>
+
+        <p class="login-prompt">Akkauntingiz bormi? <a href="#" onclick="navigate('login')">Kirish</a></p>
+    </div>
+
+    <!-- ==================== LOGIN SCREEN ==================== -->
+    <div id="screen-login" class="screen">
+        <div class="header-top">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="btn-icon" onclick="navigate('onboarding')"><i class="fa-solid fa-arrow-left"></i></button>
+                <div class="logo">
+                    <div class="logo-icon">N</div>
+                    <span class="logo-text">NextMe</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-header">
+            <div class="chapter-badge"><span class="dot p-blue"></span> XUSH KELIBSIZ</div>
+            <h1>Tizimga kirish</h1>
+            <p>O'z ustingizda ishlashda davom eting.</p>
+        </div>
+
+        <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>Username</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-at"></i>
+                    <input type="text" id="log-username" placeholder="@username" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Parol</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="log-password" placeholder="Parolingiz" required>
+                    <i class="fa-regular fa-eye toggle-password"></i>
+                </div>
+            </div>
+
+            <p id="log-error" class="error-text"></p>
+
+            <button type="submit" class="btn-primary">Kirish <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+
+        <p class="login-prompt" style="margin-top: 30px;">Akkauntingiz yo'qmi? <a href="#" onclick="navigate('registration')">Ro'yxatdan o'tish</a></p>
+    </div>
+
+    <!-- ==================== GOAL SETUP SCREEN ==================== -->
+    <div id="screen-goal-setup" class="screen">
+        <div class="header-top align-center">
+            <div class="ai-avatar-small"><i class="fa-solid fa-robot"></i></div>
+            <div class="header-titles">
+                <h2>Orzularingiz nima?</h2>
+                <p><span class="dot p-green"></span> NextMe AI eshitmoqda</p>
+            </div>
+            <div class="step-badge">2 / 3</div>
+        </div>
+
+        <div class="chat-bubble">
+            <div class="ai-avatar-tiny"><i class="fa-solid fa-robot"></i></div>
+            <div class="bubble-content">
+                Kelajakdagi o'zingiz nimalarni orzu qilayotganini ayting. Men uni bugundan boshlashingiz mumkin bo'lgan aniq yo'lga aylantiraman. ✨
+            </div>
+        </div>
+
+        <div class="focus-section">
+            <div class="focus-header">
+                <h3>Birinchi maqsadingizni tanlang</h3>
+                <span>Bittasini tanlang</span>
+            </div>
+            
+            <div class="focus-options">
+                <div class="focus-card active" onclick="selectGoal(this, 'Dasturchi bo\'lish')">
+                    <div class="focus-icon">💻</div>
+                    <div class="focus-info">
+                        <h4>Dasturchi bo'lish</h4>
+                        <p>Odamlar sevib foydalanadigan mahsulotlar yaratish</p>
+                    </div>
+                    <div class="check-circle"><i class="fa-solid fa-check"></i></div>
+                </div>
+
+                <div class="focus-card" onclick="selectGoal(this, 'Dunyoni sayohat qilish')">
+                    <div class="focus-icon">✈️</div>
+                    <div class="focus-info">
+                        <h4>Dunyoni sayohat qilish</h4>
+                        <p>Keyingi sarguzashtni rejalashtirish</p>
+                    </div>
+                    <div class="check-circle"></div>
+                </div>
+
+                <div class="focus-card" onclick="selectGoal(this, 'Mukammal Ingliz tili')">
+                    <div class="focus-icon">📚</div>
+                    <div class="focus-info">
+                        <h4>Mukammal Ingliz tili</h4>
+                        <p>O'ziga ishonch bilan gapirish</p>
+                    </div>
+                    <div class="check-circle"></div>
+                </div>
+
+                <div class="focus-card" onclick="selectGoal(this, 'Baxtli oila')">
+                    <div class="focus-icon">❤️</div>
+                    <div class="focus-info">
+                        <h4>Baxtli oila</h4>
+                        <p>Har kuni yanada yaqinlashish</p>
+                    </div>
+                    <div class="check-circle"></div>
+                </div>
+            </div>
+
+            <div class="custom-input">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <input type="text" id="custom-goal" placeholder="Yoki o'zingizning orzuingizni yozing...">
+            </div>
+        </div>
+
+        <div class="bottom-action">
+            <button class="btn-primary" onclick="saveGoalAndGoHome()">Davom etish <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- ==================== HOME SCREEN ==================== -->
+    <div id="screen-home" class="screen with-nav">
+        <div class="home-header">
+            <div class="user-profile">
+                <div onclick="navigate('profile')" style="cursor: pointer; width: 45px; height: 45px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-right: 15px;">
+                    <i class="fa-solid fa-bars" style="font-size: 20px; color: #1E293B;"></i>
+                </div>
+                <div class="user-greeting">
+                    <h2 id="greeting-name">Assalomu alaykum!</h2>
+                    <p id="current-date-display">Dilnoza · Chorshanba</p>
+                </div>
+            </div>
+            <button class="btn-icon" onclick="navigate('notifications')"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></button>
+        </div>
+
+        <div class="quote-card">
+            <i class="fa-solid fa-sparkles"></i>
+            <p id="home-quote">"Kelajakdagi o'zingiz bugungi kichik, jasur qadamlar bilan quriladi."</p>
+        </div>
+
+        <div class="calendar-section">
+            <div class="section-header">
+                <h3 id="calendar-month">Bu hafta</h3>
+                <span>Sen — Okt 2026</span>
+            </div>
+            <div class="week-days" id="week-days-container">
+                <!-- Dynamically filled by JS -->
+            </div>
+        </div>
+
+        <div class="progress-banner">
+            <div class="pb-header">
+                <div>
+                    <h4 id="pb-title">Kunning asosiy qismi</h4>
+                    <p id="pb-subtitle">Rejalashtirilgan vazifalar</p>
+                </div>
+                <div class="pb-percent" id="pb-percent">0%</div>
+            </div>
+            <div class="pb-bar-bg">
+                <div class="pb-bar-fill" id="pb-fill" style="width: 0%;"></div>
+            </div>
+            <div class="pb-footer">
+                <span>DAVOM ETYAPTI</span>
+                <span id="pb-left">0 VAZIFA QOLDI</span>
+            </div>
+        </div>
+
+        <div class="tasks-section">
+            <div class="section-header">
+                <h3>Bugungi vazifalar</h3>
+                <span id="tasks-completed-text">1 / 3 bajarildi</span>
+            </div>
+            <div class="task-list" id="task-list">
+                <!-- Tasks injected by JS -->
+            </div>
+        </div>
+
+        <div class="ai-insight" onclick="goToMentorFromInsight()" style="cursor: pointer;">
+            <div class="ai-avatar-tiny"><i class="fa-solid fa-robot"></i></div>
+            <div class="insight-content">
+                <strong>AI MENTOR MASLAHATI</strong>
+                <p id="home-ai-insight">E'tiboringiz tushlikdan oldin yuqori bo'ladi — rejadagi vazifani 11:00 da bajarishga harakat qiling.</p>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+    </div>
+
+    <!-- ==================== NOTIFICATIONS SCREEN ==================== -->
+    <div id="screen-notifications" class="screen with-nav">
+        <div class="home-header" style="margin-bottom: 20px;">
+            <div class="progress-title">
+                <h2>Bildirishnomalar</h2>
+                <p>So'nggi yangiliklar 🔔</p>
+            </div>
+            <button class="btn-icon" onclick="navigate('home')"><i class="fa-solid fa-arrow-left"></i></button>
+        </div>
+
+        <div class="notification-list" style="display: flex; flex-direction: column; gap: 15px;">
+            <div class="notification-card unread" onclick="navigate('home'); setTimeout(() => { document.getElementById('task-list').scrollIntoView({behavior: 'smooth', block: 'center'}); }, 100);" style="cursor: pointer; background: white; border-radius: 20px; padding: 15px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+                <div class="notif-icon" style="background: #E0E7FF; color: #4F46E5; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                    <i class="fa-solid fa-robot" style="font-size: 18px;"></i>
+                </div>
+                <div class="notif-content" style="flex: 1;">
+                    <h4 style="margin: 0 0 5px 0; font-size: 16px; color: #1E293B;">Yangi kunlik reja</h4>
+                    <p style="margin: 0; font-size: 13px; color: #64748B; line-height: 1.4;">AI Mentor bugungi kunlik vazifalarni shakllantirdi.</p>
+                </div>
+                <div class="notif-dot" style="width: 10px; height: 10px; background: #EF4444; border-radius: 50%; margin-left: 10px; flex-shrink: 0;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PROGRESS SCREEN ==================== -->
+    <div id="screen-progress" class="screen with-nav">
+        <div class="home-header">
+            <div class="progress-title">
+                <h2>Kelajakdagi O'zingiz</h2>
+                <p>Har kuni biroz yaqinroq ✨</p>
+            </div>
+            <button class="btn-icon"><i class="fa-solid fa-share-nodes"></i></button>
+        </div>
+
+        <div class="main-progress-card">
+            <div class="mp-content">
+                <div class="badge-momentum"><i class="fa-solid fa-trophy"></i> MOMENTUM BUILDER</div>
+                <div class="mp-score">
+                    <h1 id="progress-main-score">0%</h1>
+                    <span>umumiy maqsad taraqqiyoti</span>
+                </div>
+                <div class="mp-bar-bg"><div class="mp-bar-fill" id="progress-main-bar" style="width: 0%;"></div></div>
+                <p id="progress-main-msg">Ajoyib — sizning barqarorligingiz natija bermoqda!</p>
+            </div>
+            <div class="mp-image">
+                <i class="fa-solid fa-robot fa-3x"></i>
+            </div>
+        </div>
+
+        <div class="roadmap-section">
+            <div class="section-header">
+                <h3>Bosqichlar xaritasi</h3>
+                <span class="purple-text" id="roadmap-step-text">2 / 4 BOSQICH</span>
+            </div>
+            <div class="roadmap-steps" id="roadmap-container">
+                <!-- Dynamically filled by JS -->
+            </div>
+            <p class="roadmap-hint" id="roadmap-hint">Keyingi bosqichni ochish uchun vazifalarni bajaring</p>
+        </div>
+
+        <div class="growth-section">
+            <div class="section-header">
+                <h3>Toifalar bo'yicha o'sish</h3>
+                <span>OXIRGI 30 KUN</span>
+            </div>
+            <div class="growth-grid" id="growth-grid-container">
+                <!-- Dynamically filled by JS -->
+            </div>
+        </div>
+
+        <div class="bottom-action p-b-20">
+            <button class="btn-primary">Sayohatni davom ettirish <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- ==================== GOALS SCREEN ==================== -->
+    <div id="screen-goals" class="screen with-nav">
+        <div class="home-header">
+            <div class="progress-title">
+                <h2>Maqsadlar</h2>
+                <p>Sizning asosiy rejalaringiz 🎯</p>
+            </div>
+            <button class="btn-icon"><i class="fa-solid fa-plus"></i></button>
+        </div>
+
+        <div class="goals-container" id="goals-list-container">
+            <!-- Main Goal -->
+            <div class="goal-card main-goal">
+                <div class="goal-card-header">
+                    <span class="badge-green">ASOSIY</span>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
+                <h3 id="goals-main-title">Dasturchi bo'lish</h3>
+                <p id="goals-main-progress-text">Jarayon: 0%</p>
+                <div class="pb-bar-bg mt-10">
+                    <div class="pb-bar-fill green-fill" id="goals-main-bar" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <div class="section-header mt-20">
+                <h3>Kichik maqsadlar</h3>
+            </div>
+            
+            <div id="sub-goals-wrapper">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MENTOR SCREEN ==================== -->
+    <div id="screen-mentor" class="screen with-nav">
+        <div class="home-header">
+            <div class="progress-title">
+                <h2>AI Mentor</h2>
+                <p>Har doim yordamga tayyor 🤖</p>
+            </div>
+            <div class="ai-avatar-tiny"><i class="fa-solid fa-sparkles"></i></div>
+        </div>
+
+        <div class="chat-container" id="chat-container">
+            <!-- Dynamically filled -->
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="mentor-input" placeholder="Xabaringizni yozing..." onkeypress="if(event.key === 'Enter') sendMentorMessage()">
+            <button class="btn-send" onclick="sendMentorMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- ==================== PROFILE SCREEN ==================== -->
+    <div id="screen-profile" class="screen with-nav">
+        <div class="home-header">
+            <div class="progress-title">
+                <h2>Mening Profilim</h2>
+                <p>Shaxsiy ma'lumotlar ⚙️</p>
+            </div>
+        </div>
+        
+        <form class="auth-form" onsubmit="updateProfile(event)">
+            <div class="form-group">
+                <label>Tanlangan Maqsad</label>
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <input type="text" id="prof-goal" disabled style="background: #F3F4F6; color: #9CA3AF;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Ism</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" id="prof-name" placeholder="Ismingiz" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Familiya</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-address-card"></i>
+                    <input type="text" id="prof-surname" placeholder="Familiyangiz" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Username</label>
+                <div class="input-wrapper">
+                    <i class="fa-regular fa-at"></i>
+                    <input type="text" id="prof-username" required>
+                </div>
+            </div>
+
+            <p id="prof-msg" class="message-text"></p>
+
+            <button type="submit" class="btn-primary mt-10">Saqlash</button>
+            <button type="button" class="btn-danger mt-20" onclick="logout()">Tizimdan chiqish (Logout)</button>
+        </form>
+    </div>
+
+    <!-- ==================== BOTTOM NAVIGATION ==================== -->
+    <div class="bottom-nav" id="bottom-nav" style="display: none;">
+        <div class="nav-item active" onclick="navigate('home')">
+            <i class="fa-solid fa-house"></i>
+            <span>Uy</span>
+        </div>
+        <div class="nav-item" onclick="navigate('goals')">
+            <i class="fa-solid fa-bullseye"></i>
+            <span>Maqsadlar</span>
+        </div>
+        <div class="nav-item" onclick="navigate('mentor')">
+            <i class="fa-regular fa-comment-dots"></i>
+            <span>Mentor</span>
+        </div>
+        <div class="nav-item" onclick="navigate('progress')">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>Jarayon</span>
+        </div>
+        <div class="home-indicator"></div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
